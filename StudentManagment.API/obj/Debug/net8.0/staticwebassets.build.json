@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "+VgxQ8VmV303YEvanE1xR8937AN8aRYNzkYg3xT0vpw=",
+  "Source": "STMSApi",
+  "BasePath": "_content/STMSApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
