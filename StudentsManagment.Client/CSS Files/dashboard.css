@@ -1,0 +1,23 @@
+*{
+    margin: 0;
+    padding: 0;
+    @import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@1,300&family=PT+Serif:ital@1&family=Permanent+Marker&family=Quicksand&family=Urbanist:ital,wght@1,100;1,400&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap');
+    font-family: "Permanent Marker", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+
+body{
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    grid-template-rows: 40px 1fr;
+    height: 100%;
+    width: 100%;
+    background-image: url('/Icons&Backgrownd/bag.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    grid-template-areas: 
+    "header header"
+    "sidebar content";
+}

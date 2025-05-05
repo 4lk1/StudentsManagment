@@ -1,0 +1,132 @@
+.content{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 50px 150px 1fr;
+    grid-template-areas: 
+    "pro"
+    "asf"
+    "tab";
+
+    & .pro{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50px;
+
+        & input{
+            height: 30px;
+            width: 300px;
+            border-radius: 15px;
+            border: none;
+            box-shadow: 0px 5px 10px gray;
+            padding-left: 10px;
+
+        }
+
+        & input:focus{
+            outline: none;
+        }
+
+        & input::placeholder{
+            font-style: italic;
+        }
+
+        & button{
+            height: 30px;
+            width: 50px;
+            border-radius: 20px;
+            margin-left: 10px;
+            border: none;
+            box-shadow: 0px 5px 10px gray;
+
+            & img{
+                height: 17px;
+                width: 17px;
+            }
+        }
+    }
+
+    & #add-student-form{
+        border-radius: 50px;
+        border: 1px solid black;
+        height: 100%;
+
+        & input{
+            height: 30px;
+            width: 300px;
+            border-radius: 15px;
+            border: none;
+            box-shadow: 0px 5px 10px gray;
+            margin: 10px;
+            padding-left: 10px;
+
+        }
+        & button{
+            height: 30px;
+            width: 50px;
+            border-radius: 20px;
+            margin-left: 10px;
+            border: none;
+            box-shadow: 0px 5px 10px gray;
+        }
+    }
+
+    & .tab{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        border-radius: 30px;
+        margin-top: 10px;
+
+        & #team{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 2rem;
+            border: 1px solid lightgray;
+            height: 13rem;
+            width: 12rem;
+            border-radius: 2rem;  
+            background-color: rgba(185, 185, 192, 0.8);   
+            backdrop-filter: blur(10px); 
+            padding: 0.5rem;
+            box-shadow: 1px 5px 5px silver;
+
+            & img{
+                position: absolute;
+                top: 1rem;
+                height:6rem;
+                width: 11rem;
+                border-radius: 1rem;
+            }
+            & button{
+                position: absolute;
+                top: 12.2rem;
+                border-radius: 1rem;
+                height: 1.5rem;
+                width: 3.5rem;
+                background-color: wheat;
+            }
+            & h3{
+                position: absolute;
+                top: 7rem;
+                left: 1rem;
+            }
+            & h4{
+                position: absolute;
+                top: 8.5rem;
+                left: 1rem;
+            } 
+            & h5{
+                position: absolute;
+                top: 10rem;
+                left: 1rem;
+            } 
+            & h6{
+                position: absolute;
+                top: 11.25rem;
+                left: 1rem;
+            }
+         }
+    }
+}

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Axen Notes</title>
+  <link rel="icon" type="image/x-icon" href="\Icons&Backgrownd\token_30dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png">
+  <link rel="stylesheet" href="/CSS Files/notes.css">
+  <link rel="stylesheet" type="text/css" href="\CSS Files\dashboard.css">
+  <link rel="stylesheet" type="text/css" href="\CSS Files\header.css">
+  <link rel="stylesheet" type="text/css" href="\CSS Files\sidebar.css">
+  <link rel="stylesheet" type="text/css" href="/CSS Files/profile.css">
+
+
+  <style>
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .note {
+      background: rgb(223, 223, 223, 0.7);
+      padding: 15px;
+      border-radius: 30px;
+      margin: 10px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+
+    textarea {
+      width: 100%;
+      resize: vertical;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      background: transparent;
+    }
+
+    .actions {
+      margin-top: 10px;
+    }
+
+    .actions button {
+      margin-right: 10px;
+      padding: 6px 12px;
+      border: none;
+      background-color: #007bff;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .note-input {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .note-input input {
+      width: 60%;
+      padding: 10px;
+      font-size: 16px;
+      margin-right: 10px;
+      border-radius: 30px;
+      border: none;
+      background-color: rgba(230, 230, 230, 0.815);
+    }
+
+    .note-input input:focus{
+      outline: none;
+    }
+
+    .note-input button {
+      padding: 10px 15px;
+      font-size: 16px;
+      background-color: rgb(27, 151, 27);
+      border: none;
+      border-radius: 20px;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <script src="/JS files/sidebar.js"></script>
+  <script src="/JS files/profile.js"></script>
+  <!-----Ikonat nga ionicons ----->
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+ <nav class="header" style="grid-area: header;">
+
+     <div class="title">
+         <img src="/Icons&Backgrownd/icon.png" alt="">
+         <a href="dashboard.html">STMS</a>
+     </div>
+
+
+     <div class="nav">
+
+             <a href="dashboard.html">Home</a>
+             <a href="landingpg.html#cont">Contact Us</a>
+          <!-- Toggle List using JS -->
+          <a onclick="openProfilePopup()">Profile</a>
+                 
+     </div>
+
+ </nav>
+
+ <!-- Profile Popup -->
+<div id="profilePopup" class="profile-popup hidden">
+  <div class="profile-content">
+    <span class="close-btn" onclick="closeProfilePopup()">&times;</span>
+    <h2>My Profile</h2>
+    <p><strong>Username:</strong> <span id="popupUsername"></span></p>
+    <p><strong>Email:</strong> <span id="popupEmail"></span></p>
+    <button onclick="logout()">Logout</button>
+    <button onclick="deleteAccount()">Delete Account</button>
+  </div>
+</div>
+
+ <div class="sidebar" id="sidebar">
+     <div class="sidebar-content">
+       <button onclick="toggleSidebar()" title="Expand">
+         <ion-icon name="menu-outline"></ion-icon>
+         <span class="label">Collapse</span>
+       </button>
+       <a href="dashboard.html" title="Faqja Kryesore">
+         <div>
+           <ion-icon name="layers-outline"></ion-icon>
+           <span class="label">Home</span>
+         </div>
+       </a>
+       <a href="projects.html" title="Projektet">
+         <div>
+           <ion-icon name="ribbon-outline"></ion-icon>
+           <span class="label">Projects</span>
+         </div>
+       </a>
+       <a href="students.html" title="Studentet">
+         <div>
+           <ion-icon name="people-outline"></ion-icon>
+           <span class="label">Students</span>
+         </div>
+       </a>
+       <a href="/HTML files/shenimet.html" title="Notes">
+         <div>
+           <ion-icon name="clipboard-outline"></ion-icon>
+           <span class="label">Notes</span>
+         </div>
+       </a>
+       <a href="/HTML files/att.html" title="Notes">
+        <div>
+            <ion-icon name="checkbox-outline"></ion-icon>
+          <span class="label">Atendence</span>
+        </div>
+      </a>
+      <a href="missed.html"><ion-icon name="close-circle-outline"></ion-icon> <span class="label">Absence</span></a>
+     </div>
+   </div>
+
+ <div class="content" style="grid-area: content;">
+  
+            <h1>Edit Notes</h1>
+            <div id="notes-container"></div>
+
+          <div class="note-input">
+              <input type="text" id="note-text" placeholder="New note">
+              <button id="save-note">Add</button>
+          </div>
+  </div>
+
+  <script>
+ document.addEventListener("DOMContentLoaded", async function () {
+    const noteText = document.getElementById("note-text");
+    const saveNoteBtn = document.getElementById("save-note");
+    const notesContainer = document.getElementById("notes-container");
+    const token = localStorage.getItem("token");
+
+    let notes = [];
+    async function loadNotes() {
+        try {
+            const response = await fetch('/api/notes', {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            if (!response.ok) throw new Error("Failed to fetch notes");
+            notes = await response.json();
+            renderNotes();
+        } catch (error) {
+            console.error('Error fetching notes:', error);
+            alert("Failed to load notes.");
+        }
+    }
+
+    function renderNotes() {
+        notesContainer.innerHTML = "";
+        notes.forEach((note, index) => {
+            const noteDiv = document.createElement("div");
+            noteDiv.classList.add("note");
+
+            const noteContent = document.createElement("textarea");
+            noteContent.value = note.content;
+            noteContent.readOnly = true;
+
+            const actions = document.createElement("div");
+            actions.classList.add("actions");
+
+            const editBtn = document.createElement("button");
+            editBtn.innerText = "Edit";
+
+            const deleteBtn = document.createElement("button");
+            deleteBtn.innerText = "Delete";
+            deleteBtn.style.backgroundColor = "red";
+
+            editBtn.onclick = async () => {
+                if (editBtn.innerText === "Edit") {
+                    noteContent.readOnly = false;
+                    noteContent.focus();
+                    editBtn.innerText = "Save";
+                } else {
+                    try {
+                        const response = await fetch(`/api/notes/${note.id}`, {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${token}`
+                            },
+                            body: JSON.stringify({ content: noteContent.value })
+                        });
+                        if (!response.ok) throw new Error("Failed to update note");
+                        notes[index].content = noteContent.value;
+                        noteContent.readOnly = true;
+                        editBtn.innerText = "Edit";
+                    } catch (error) {
+                        console.error('Error updating note:', error);
+                        alert("Failed to update note.");
+                    }
+                }
+            };
+
+            deleteBtn.onclick = async () => {
+                try {
+                    const response = await fetch(`/api/notes/${note.id}`, {
+                        method: 'DELETE',
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
+                    if (!response.ok) throw new Error("Failed to delete note");
+                    notes.splice(index, 1);
+                    renderNotes();
+                } catch (error) {
+                    console.error('Error deleting note:', error);
+                    alert("Failed to delete note.");
+                }
+            };
+
+            actions.appendChild(editBtn);
+            actions.appendChild(deleteBtn);
+
+            noteDiv.appendChild(noteContent);
+            noteDiv.appendChild(actions);
+            notesContainer.appendChild(noteDiv);
+        });
+    }
+
+    saveNoteBtn.addEventListener("click", async () => {
+        const text = noteText.value.trim();
+        if (text) {
+            try {
+                const response = await fetch('/api/notes', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ content: text })
+                });
+                if (!response.ok) throw new Error("Failed to create note");
+                const newNote = await response.json();
+                notes.push(newNote);
+                noteText.value = "";
+                renderNotes();
+            } catch (error) {
+                console.error('Error creating note:', error);
+                alert("Failed to create note.");
+            }
+        }
+    });
+
+    await loadNotes();
+});
+  </script>
+</body>
+</html>

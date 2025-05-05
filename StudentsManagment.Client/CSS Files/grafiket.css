@@ -1,0 +1,53 @@
+.graph {
+    display: grid;
+    grid-template-columns: 1fr 1fr;  /* Two equal-width columns for the graphs */
+    gap: 20px;  /* Space between the graphs */
+    grid-template-areas: 
+    "sm-st ta"; /* Define grid areas for better control */
+}
+
+.sm-st, .ta{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.attc {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+canvas {
+    width: 50% ;
+    height: 50% ; 
+}
+h3 {
+    margin-bottom: 1rem;
+    align-self: center;
+  }
+
+  #chart-container {
+    background: #ffffffbe;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    width: 70%;
+    height: 50%;
+    margin-bottom: 20px;
+  }
+
+  #reset-btn {
+    margin-top: 1rem;
+    background: #e53935;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  #reset-btn:hover {
+    background: #c62828;
+  }

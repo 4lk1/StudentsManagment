@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axen Dashboard</title>
+    <link rel="icon" type="image/x-icon" href="/Icons&Backgrownd/token_30dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png">
+
+    <!-- Link to your existing CSS files -->
+    <link rel="stylesheet" type="text/css" href="\CSS Files\dashboard.css">
+    <link rel="stylesheet" type="text/css" href="\CSS Files\header.css">
+    <link rel="stylesheet" type="text/css" href="\CSS Files\sidebar.css">
+    <link rel="stylesheet" type="text/css" href="\CSS Files\mp.css">
+    <link rel="stylesheet" type="text/css" href="\CSS Files\content.css">
+    <link rel="stylesheet" type="text/css" href="\CSS Files\grafiket.css">
+    <link rel="stylesheet" type="text/css" href="/CSS Files/profile.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
+
+
+    <!-- New CSS for notes -->
+    <link rel="stylesheet" href="/CSS Files/notes.css">
+
+    <!-- Font Awesome for icons -->
+    <script src="https://kit.fontawesome.com/3fae1ac1fe.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=token">
+
+
+    <!-- Ionicons for icons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+
+<body>
+
+    <!-- Your JS files -->
+    <script src="/JS files/dashboard.js"></script>
+    <script src="/JS files/calendar.js"></script>
+    <script src="/JS files/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/JS files/chart.js"></script>
+    <script src="/JS files/teamnr.js"></script>
+    <script src="/JS files/sidebar.js"></script>
+    <script src="/JS files/stcount.js"></script>
+    <script src="/JS files/profile.js"></script>
+    <script src="/JS files/attc.js"></script>
+    
+    <!-- Navigation Bar -->
+    <nav class="header" style="grid-area: header;">
+        <div class="title">
+            <img src="/Icons&Backgrownd/icon.png" alt="">
+            <a href="dashboard.html">STMS</a>
+        </div>
+        <div class="nav">
+            <a href="dashboard.html">Home</a>
+            <a href="#">Contact Us</a>
+            <a onclick="openProfilePopup()">Profile</a>
+        </div>
+    </nav>
+
+
+    <!-- Profile Popup -->
+<div id="profilePopup" class="profile-popup hidden">
+  <div class="profile-content">
+    <span class="close-btn" onclick="closeProfilePopup()">&times;</span>
+    <h2>My Profile</h2>
+    <p><strong>Username:</strong> <span id="popupUsername"></span></p>
+    <p><strong>Email:</strong> <span id="popupEmail"></span></p>
+    <button onclick="logout()">Logout</button>
+    <button onclick="deleteAccount()">Delete Account</button>
+  </div>
+</div>
+    <!-- Sidebar -->
+
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-content">
+          <button onclick="toggleSidebar()" title="Expand">
+            <ion-icon name="menu-outline"></ion-icon>
+            <span class="label">Collapse</span>
+          </button>
+          <a href="dashboard.html" title="Faqja Kryesore">
+            <div>
+              <ion-icon name="layers-outline"></ion-icon>
+              <span class="label">Home</span>
+            </div>
+          </a>
+          <a href="projects.html" title="Projektet">
+            <div>
+              <ion-icon name="ribbon-outline"></ion-icon>
+              <span class="label">Projects</span>
+            </div>
+          </a>
+          <a href="students.html" title="Studentet">
+            <div>
+              <ion-icon name="people-outline"></ion-icon>
+              <span class="label">Students</span>
+            </div>
+          </a>
+          <a href="/HTML files/shenimet.html" title="Notes">
+            <div>
+              <ion-icon name="clipboard-outline"></ion-icon>
+              <span class="label">Notes</span>
+            </div>
+          </a>
+          <a href="/HTML files/att.html" title="Notes">
+            <div>
+                <ion-icon name="checkbox-outline"></ion-icon>
+              <span class="label">Atendence</span>
+            </div>
+          </a>
+          <a href="missed.html"><ion-icon name="close-circle-outline"></ion-icon> <span class="label">Absence</span></a>
+        </div>
+      </div>
+
+    <!--<div class="sidebar" id="sidebar" style="grid-area: sidebar;">
+        <div class="sidebar-content">
+            <button onclick="toggleSidebar()" title="Expand"><ion-icon name="expand-outline" alt=""></ion-icon></button>
+            <a href="dashboard.html" title="Faqja Kryesore">
+                <div><ion-icon name="layers-outline" alt=""></ion-icon></div>
+            </a>
+            <a href="projects.html" title="Projektet">
+                <div><ion-icon name="ribbon-outline" alt=""></ion-icon></div>
+            </a>
+            <a href="students.html" title="Studentet">
+                <div><ion-icon name="people-outline" alt=""></ion-icon></div>
+            </a>
+            <a href="/HTML files/shenimet.html" title="Notes">
+                <div><ion-icon name="clipboard-outline"></ion-icon></div>
+            </a>
+        </div>
+    </div>-->
+
+    <!-- Content Area -->
+    <div class="content" style="grid-area: content;">
+        <div class="stat" style="grid-area: stat;">
+            <a href="dashboard.html">
+                <div id="time">00:00:00</div>
+            </a>
+            <a href="projects.html">
+                    <div class="counter-box">
+                        <h4>Number of Teams</h4>
+                        <span id="team-count">0</span>
+                    </div>
+            </a>
+            <a href="students.html"> 
+                    <div class="card">
+                        <h4>Number of Students</h4>
+                        <span class="number" id="student-count">0</span>
+                    </div>
+            </a>
+        </div>
+
+        <div class="cal" style="grid-area: cal;">
+            <div class="calendar">
+                <header>
+                    <button onclick="prevMonth()">←</button>
+                    <h2 id="month-year"></h2>
+                    <button onclick="nextMonth()">→</button>
+                </header>
+                <div class="days" id="weekdays"></div>
+                <div class="days" id="calendar-days"></div>
+            </div>
+        </div>
+
+        <!-- Notes Section -->
+        <div class="notes" style="grid-area: notes;">
+            <div id="notes-container" class="notes-container">
+                <!-- Saved notes will appear here -->
+            </div>
+            <a href="shenimet.html" class="back-link" style="margin-top: 10px; display: block; text-align: center;">
+                Edit Notes
+            </a>
+            
+        </div>
+
+        <div class="graph" style="grid-area: fre;">
+            <div class="sm-st" style="grid-area: sm-st;">
+                     <h3>Attendance Overview</h3>
+                    <div id="chart-container" class="attc">
+                        <canvas id="attendanceChart"></canvas>
+                    </div>
+            </div>
+           
+            <div class="ta" style="grid-area: ta;">
+                <h3>Your Daily Entries Tracker</h3>
+                <div id="chart-container">
+                  <canvas id="loginChart"></canvas>
+                  <button id="reset-btn">Clear Visit Data</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

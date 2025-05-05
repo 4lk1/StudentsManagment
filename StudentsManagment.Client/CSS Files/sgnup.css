@@ -1,0 +1,149 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: #dcdde1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+
+.container1 {
+  position: relative;
+  width: 900px;
+  height: 550px;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  display: flex;
+}
+
+.container1::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #000 50%, #fff 50%);
+  z-index: 1;
+}
+
+.kutia-hyrjes, .kutia-welcome {
+  width: 50%;
+  padding: 60px;
+  z-index: 2;
+}
+
+.kutia-hyrjes { 
+  color: black;
+  display: flex;
+  flex-direction: column;
+}
+
+.kutia-welcome {
+  color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+}
+
+.kutia-hyrjes h2 {
+  font-size: 32px;
+  margin-bottom: 30px;
+  font-weight: bold;
+  align-self: flex-end;
+}
+
+.grupi-input {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.grupi-input input {
+  width: 80%;
+  padding: 12px 10px 12px 5px;
+  font-size: 18px;
+  border: none;
+  color:  rgb(153,153,153);
+  border-bottom: 2px solid #999;
+  background: transparent;
+  outline: none;
+}
+
+.grupi-input label {
+  position: absolute;
+  top: 12px;
+  left: 30px;
+  color: #999;
+  font-size: 16px;
+  pointer-events: none;
+  transition: 0.2s ease all;
+}
+
+.grupi-input input:focus ~ label,
+.grupi-input input:not(:placeholder-shown) ~ label {
+  top: -10px;
+  font-size: 12px;
+  left: 30px;
+  color: #00adb5;
+}
+
+.grupi-input i {
+  position: absolute;
+ right: 0;
+  color: #00adb5;
+  font-size: 16px;
+}
+
+.btn1 {
+  width: 100%;
+  padding: 12px;
+  background: black;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: background 0.3s ease;
+}
+
+.btn1:hover {
+  background: gray;
+}
+
+.teksti-login {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+}
+
+.teksti-login a {
+  color: #3b5998;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.kutia-welcome h1 {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.kutia-hyrjes p {
+  margin-top: 25px;
+  font-size: 16px;
+  color: black;
+}

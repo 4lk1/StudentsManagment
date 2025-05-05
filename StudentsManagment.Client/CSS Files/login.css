@@ -1,0 +1,118 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #f2f2f2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container2 {
+  position: relative;
+  display: flex;
+  width: 1000px;
+  height: 600px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
+  background-color: white;
+}
+.diagonalja{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom right, black 50%, white 50%);
+  z-index: 1;
+}
+
+.pjesa-e-majte,
+.pjesa-e-djathte{
+  flex: 1;
+  padding: 50px;
+  position: relative;
+  z-index: 2;
+}
+
+.pjesa-e-majte {
+  background-color: transparent;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.pjesa-e-djathte {
+  background-color: white;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+form h2 {
+  margin-bottom: 30px;
+  text-align: center;
+  text-decoration: underline;
+}
+
+.grupi-input {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.grupi-input i {
+  position: absolute;
+  top: 14px;
+  left: 10px;
+  color: #aaa;
+}
+
+.grupi-input input {
+  width: 100%;
+  padding: 14px 10px 14px 35px;
+  font-size: 16px;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  background: transparent;
+  outline: none;
+}
+
+.grupi-input label {
+  position: absolute;
+  left: 35px;
+  top: 14px;
+  color: #888;
+  font-size: 16px;
+  pointer-events: none;
+  transition: 0.3s ease all;
+}
+
+.grupi-input input:focus + label,
+.grupi-input input:not(:placeholder-shown) + label {
+  top: -10px;
+  font-size: 13px;
+  color: #00cccc;
+}
+
+#hyrja {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  background-color: black;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 20px;
+  transition: background-color 0.3s ease;
+}
+
+#hyrja:hover {
+  background-color: #555;
+}
+.signup-text{
+text-align: center;
+}
